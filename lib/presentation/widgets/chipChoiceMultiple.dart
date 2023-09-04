@@ -1,0 +1,49 @@
+import 'package:chips_choice/chips_choice.dart';
+import 'package:testing_clinicalpathways/presentation/exporter/appConstExport.dart';
+import 'package:flutter/material.dart';
+
+import '../utils/AppColors.dart';
+import '../utils/ScreenSize.dart';
+
+class MultipleChipChoice<T> extends StatelessWidget {
+  final List<String> selectedValues;
+  final List<T> choiceList;
+  final ValueChanged<List<String>> onChanged;
+  final String Function(int index, T item) valueFn;
+  final String Function(int index, T item) labelFn;
+  final String Function(int index, T item) tooltipFn;
+
+  const MultipleChipChoice({super.key, required this.selectedValues, required this.choiceList, required this.onChanged, required this.valueFn, required this.labelFn, required this.tooltipFn});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChipsChoice<String>.multiple(
+      value: selectedValues,
+      onChanged: onChanged,
+      choiceItems: C2Choice.listFrom<String, T>(
+        source: choiceList,
+        value: valueFn,
+        label: labelFn,
+        tooltip: tooltipFn,
+      ),
+      choiceCheckmark: true,
+      choiceStyle: C2ChipStyle.filled(
+        overlayColor: AppColor.primaryColor,
+        foregroundStyle: const TextStyle(fontWeight: FontWeight.w700),
+        height: ScreenSize.height(context) * 0.04,
+        color: AppColor.greyShimmer,
+        selectedStyle: const C2ChipStyle(
+          elevation: 2,
+          backgroundColor: AppColor.primaryColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(25),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
