@@ -23,7 +23,6 @@ showConfirmAlertDialog({
   });
 }
 
-
 /// HOME SCREEN END DRAWER CONFIRMATION OF CREATE FIREBASE
 class ConfirmationDialog extends StatelessWidget {
   final String name;
